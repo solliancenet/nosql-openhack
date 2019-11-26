@@ -361,22 +361,6 @@
     "sqlserverName": {
       "type": "string",
       "value": "[variables('sqlserverName')]"
-    },
-    "Namespace1ConnectionString": {
-      "type": "string",
-      "value": "[listkeys(variables('authRuleResourceId'), '2017-04-01').primaryConnectionString]"
-    },
-    "SharedAccessPolicy1PrimaryKey": {
-      "type": "string",
-      "value": "[listkeys(variables('authRuleResourceId'), '2017-04-01').primaryKey]"
-    },
-    "Namespace2ConnectionString": {
-      "type": "string",
-      "value": "[listkeys(variables('authRule2ResourceId'), '2017-04-01').primaryConnectionString]"
-    },
-    "SharedAccessPolicy2PrimaryKey": {
-      "type": "string",
-      "value": "[listkeys(variables('authRule2ResourceId'), '2017-04-01').primaryKey]"
     }
   }
 }
