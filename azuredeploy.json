@@ -36,6 +36,9 @@
         "description": "Describes plan's instance count"
       }
     },
+    "sqlserverName": {
+      "type": "string"
+    },
     "sqlAdministratorLogin": {
       "type": "string",
       "defaultValue": "openhackadmin",
@@ -111,10 +114,10 @@
     "name2-suffix": "[uniqueString(parameters('secondResourceGroup'))]",
     "hostingPlanName": "[concat('openhackplan-', variables('name-suffix'))]",
     "webSiteName": "[concat('openhackweb-', variables('name-suffix'))]",
-    "sqlserverName": "[concat('contososqlserver03', variables('name-suffix'))]",
+    "sqlserverName": "[parameters('sqlserverName')]",
     "namespaceName": "[concat('openhackhub-', variables('name-suffix'))]",
     "namespace2Name": "[concat('openhackhub-', variables('name2-suffix'))]",
-    "databaseName": "Movies03",
+    "databaseName": "Movies",
     "defaultSASKeyName": "RootManageSharedAccessKey",
     "authRuleResourceId": "[resourceId('Microsoft.EventHub/namespaces/authorizationRules', variables('namespaceName'), variables('defaultSASKeyName'))]",
     "authRule2ResourceId": "[resourceId('Microsoft.EventHub/namespaces/authorizationRules', variables('namespace2Name'), variables('defaultSASKeyName'))]"

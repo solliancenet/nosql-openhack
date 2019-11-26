@@ -1,7 +1,7 @@
 # Enter the first Resource Group name (i.e. openhack1)
-$resourceGroup1Name = "openhack3"
+$resourceGroup1Name = "openhack7"
 # Enter the second Resource Group name (i.e. openhack2)
-$resourceGroup2Name = "openhack4"
+$resourceGroup2Name = "openhack8"
 # Enter the location for the first resource group (i.e. westus)
 $location1 = "westus2"
 # Enter the location for the second resource group (i.e. eastus)
@@ -11,7 +11,9 @@ $sqlAdministratorLogin = "openhackadmin"
 # Enter the SQL Server password (i.e. Password123)
 $sqlAdministratorLoginPassword = "Password123"
 
+$suffix = -join ((48..57) + (97..122) | Get-Random -Count 13 | % {[char]$_})
 $databaseName = "Movies"
+$sqlserverName = "openhacksql-$suffix"
 
 New-AzResourceGroup -Name $resourceGroup1Name -Location $location1
 New-AzResourceGroup -Name $resourceGroup2Name -Location $location2
@@ -23,16 +25,19 @@ $outputs = New-AzResourceGroupDeployment `
     -TemplateUri $templateUri `
     -secondResourceGroup $resourcegroup2Name `
     -secondLocation $location2 `
+    -sqlserverName $sqlserverName `
     -sqlAdministratorLogin $sqlAdministratorLogin `
     -sqlAdministratorLoginPassword $(ConvertTo-SecureString -String $sqlAdministratorLoginPassword -AsPlainText -Force)
 
-$sqlSvrFqdn = $outputs.Outputs["sqlSvrFqdn"].value
-$sqlserverName = $outputs.Outputs["sqlserverName"].value
+#$sqlSvrFqdn = $outputs.Outputs["sqlSvrFqdn"].value
+#$sqlserverName = $outputs.Outputs["sqlserverName"].value
 
-$importRequest = New-AzSqlDatabaseImport -ResourceGroupName "<resourceGroupName>" `
+$importRequest = New-AzSqlDatabaseImport -ResourceGroupName $resourceGroup1Name `
     -ServerName $sqlserverName -DatabaseName $databaseName `
-    -DatabaseMaxSizeBytes "5368709120" `
-    -StorageUri "https://myStorageAccount.blob.core.windows.net/importsample/sample.bacpac" `
+    -DatabaseMaxSizeBytes "5000000" `
+    -StorageKeyType "SharedAccessKey" `
+    -StorageKey "?sp=rl&st=2019-11-26T21:16:46Z&se=2025-11-27T21:36:00Z&sv=2019-02-02&sr=b&sig=P15nBXR2bD2jBnHX92%2BwWRxMnvTeUl3EdBNhLXnZ95s%3D" `
+    -StorageUri "https://databricksdemostore.blob.core.windows.net/data/nosql-openhack/movies.bacpac" `
     -Edition "Basic" -ServiceObjectiveName "Basic" `
     -AdministratorLogin $sqlAdministratorLogin `
     -AdministratorLoginPassword $(ConvertTo-SecureString -String $sqlAdministratorLoginPassword -AsPlainText -Force)

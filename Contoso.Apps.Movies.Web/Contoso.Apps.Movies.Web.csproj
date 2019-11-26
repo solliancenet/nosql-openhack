@@ -395,6 +395,7 @@
     <Content Include="Connected Services\AzureAD\ConnectedService.json" />
     <None Include="Properties\PublishProfiles\contosomoviewebappsql - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\openhackweb-zgrmaxnj4vr4o - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\s2webrdsatnqkfpebq - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
