@@ -28,4 +28,21 @@
     Connect-AzAccount
     ```
 
-5. Open the `deploy.ps1` PowerShell script in the PowerShell ISE window.
+5. Open the `deploy.ps1` PowerShell script in the PowerShell ISE window and update the following variables:
+
+    > **Note**: The hosted Azure subscriptions do not support deploying SQL Server to all locations. You can use the Create Resource form in the portal while signed in as a class user, select SQL Database, select new SQL Server, then select locations in the dropdown list until you've identified the ones that don't cause a "this location is not supported" alert.
+
+    ```PowerShell
+    # Enter the first Resource Group name (i.e. openhack1)
+    $resourceGroup1Name = "openhack1"
+    # Enter the second Resource Group name (i.e. openhack2)
+    $resourceGroup2Name = "openhack2"
+    # Enter the location for the first resource group (i.e. westus2)
+    $location1 = "westus2"
+    # Enter the location for the second resource group (i.e. eastus)
+    $location2 = "eastus"
+    # Enter the SQL Server username (i.e. openhackadmin)
+    $sqlAdministratorLogin = "openhackadmin"
+    # Enter the SQL Server password (i.e. Password123)
+    $sqlAdministratorLoginPassword = "Password123"
+    ```
