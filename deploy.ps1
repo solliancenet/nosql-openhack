@@ -1,7 +1,7 @@
 # Enter the first Resource Group name (i.e. openhack1)
-$resourceGroup1Name = "openhack7"
+$resourceGroup1Name = "openhack1"
 # Enter the second Resource Group name (i.e. openhack2)
-$resourceGroup2Name = "openhack8"
+$resourceGroup2Name = "openhack2"
 # Enter the location for the first resource group (i.e. westus)
 $location1 = "westus2"
 # Enter the location for the second resource group (i.e. eastus)
