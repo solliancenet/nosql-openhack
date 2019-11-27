@@ -66,6 +66,8 @@
 
     ![The Deployment Center blade is displayed.](media/portal-web-app-deployment-center.png "Deployment Center")
 
+## Deployment artifacts
+
 After deployment has completed, you should see the following resources:
 
 - Resource group 1 ("openhack1")
@@ -78,3 +80,5 @@ After deployment has completed, you should see the following resources:
 - Resource group 2 ("openhack2")
 
   - Event Hubs Namespace with an event hub named `telemetry`
+
+> [Download the zip file](https://databricksdemostore.blob.core.windows.net/data/nosql-openhack/DataGenerator.zip) for the data generator used in the OpenHack.
