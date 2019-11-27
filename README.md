@@ -1,84 +1,56 @@
-# nosql-openhack
+# Microsoft NoSQL OpenHack artifacts
 
-## Deploy Web App To Azure Using GitHub repository
+## Coaches: OpenHack classroom setup instructions
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsolliancenet%2Fnosql-openhack%2Fmaster%2Fazuredeploy.json" rel="nofollow">
-    <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png" style="max-width:100%;">
-</a>
+Follow the [deployment instructions](deployment-instructions.md) to prepare the classroom environment for an OpenHack event.
 
-## PowerShell instructions
+## Attendees: OpenHack artifacts
 
-1. Open a **PowerShell ISE** window, run the following command, if prompted, click **Yes to All**:
+Feel free to use the below artifacts for your reference.
 
-   ```PowerShell
-   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-   ```
+### Existing SQL database
 
-2. Make sure you have the latest PowerShell Azure module installed by executing the following command:
+Contoso Video has provided a database document for their current (test) Movies database. Each table contains a brief description and detailed schema information.
 
-    ```PowerShell
-    Install-Module -Name Az -AllowClobber -Scope CurrentUser
-    ```
+* [SQL database documentation](database-schema/Movies/index.md)
+* [Database diagram](database-schema/database-diagram.png)
 
-3. If you installed an update, **close** the PowerShell ISE window, then **re-open** it. This ensures that the latest version of the Az module is used.
+### Web application
 
-4. Execute the following to sign in to the Azure account:
+Contoso Video uploaded a recent test build of their online video store and related projects. This has already been deployed to a web app running in your classroom Azure subscription. You can use this source code as a reference for determining query patterns and business logic. You will need [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/) running on a Windows machine with [.NET Framework 4.7.2](https://dotnet.microsoft.com/download/dotnet-framework/net472) in order to run it locally. Running it locally is optional, but could make the code evaluation process easier.
 
-    ```PowerShell
-    Connect-AzAccount
-    ```
+* [Visual Studio solution](Contoso.Apps.Movies.sln)
 
-5. Open the `deploy.ps1` PowerShell script in the PowerShell ISE window and update the following variables:
+### Data generator
 
-    > **Note**: The hosted Azure subscriptions do not support deploying SQL Server to all locations. You can use the Create Resource form in the portal while signed in as a class user, select SQL Database, select new SQL Server, then select locations in the dropdown list until you've identified the ones that don't cause a "this location is not supported" alert.
+We have provided a data generator that simulates user clickstream data and pumps it into Azure Event Hubs. You will use this generator in some of the challenges, but it is a good idea to configure it beforehand. The data generator is deployed as a .NET Core 3.0 self-contained deployment (SCD) package. This means that the .NET Core runtime is included within each platform folder, so you do not need to download the .NET Core 3.0 SDK as a pre-requisite.
 
-    ```PowerShell
-    # Enter the first Resource Group name (i.e. openhack1)
-    $resourceGroup1Name = "openhack1"
-    # Enter the second Resource Group name (i.e. openhack2)
-    $resourceGroup2Name = "openhack2"
-    # Enter the location for the first resource group (i.e. westus2)
-    $location1 = "westus2"
-    # Enter the location for the second resource group (i.e. eastus)
-    $location2 = "eastus"
-    # Enter the SQL Server username (i.e. openhackadmin)
-    $sqlAdministratorLogin = "openhackadmin"
-    # Enter the SQL Server password (i.e. Password123)
-    $sqlAdministratorLoginPassword = "Password123"
-    ```
+1. [Download the zip file](https://databricksdemostore.blob.core.windows.net/data/nosql-openhack/DataGenerator.zip) and extract it to your desktop.
 
-6. Press **F5** to run the script, this will do the following:
+2. Open the folder containing the extracted files, then open either the `linux-x64`, `osx-x64`, or `win-x64` subfolder, based on your environment.
 
-   - Deploy the ARM template
-   - Restore the Azure SQL database from a `.bacpac` file
-   - Deploy the sample web app
+3. Within the appropriate subfolder, open the **appsettings.json** file and update it with the following:
 
-7. If you receive an error during the ARM template deployment for `Resource Microsoft.Web/sites/sourcecontrols`, with an error code of `ResourceDeploymentFailure` and message stating `The resource operation completed with terminal provisioning state 'Failed'.`, this means the automated web app deployment from GitHub failed. This is most likely due to a timeout during the NuGet package restore process.
+   * **EVENT_HUB_1_CONNECTION_STRING**: Open the Event Hubs namespace in the location 1 resource group (default name is `openhack1`), open the `telemetry` event hub, create a new shared access policy with a Send policy, and paste its connection string here.
+   * **EVENT_HUB_2_CONNECTION_STRING**: Keep empty for now. This will need to be populated in a later challenge.
+   * **SQL_CONNECTION_STRING**: The easiest way to retrieve this is to open the web app deployed to the location 1 resource group (`openhack1`), open **Configuration**, then copy the `SqlConnection` connection string value.
 
-    ![The ARM template deployment failure is shown.](media/arm-deployment-failure-web.png "Deployment failure")
+#### How to execute the data generator
 
-    If you see this message, perform the following steps:
+When you need to execute the data generator, perform the following, based on your platform:
 
-    1. Log in to the Azure portal (<https://portal.azure.com>) with the account used for your deployment.
-    2. Open the `resourceGroup1Name` resource group (default is "openhack1").
-    3. Open the App Service whose name starts with "openhackweb-".
-    4. Select **Deployment Center** in the left-hand menu. Most likely, the deployment status will display as "Failed". Select **Sync** to initiate a new build from the connected GitHub repo. If the status shows as Failed again, select the Logs link to view the latest logs.
+1. Windows:
 
-    ![The Deployment Center blade is displayed.](media/portal-web-app-deployment-center.png "Deployment Center")
+   * Simply execute **DataGenerator.exe** inside the `win-x64` folder.
 
-## Deployment artifacts
+2. Linux:
 
-After deployment has completed, you should see the following resources:
+   * Navigate to the `linux-x64` folder.
+   * Run `chmod 777 DataGenerator` to provide access to the binary.
+   * Run `./DataGenerator`.
 
-- Resource group 1 ("openhack1")
+3. MacOS:
 
-  - Event Hubs Namespace with an event hub named `telemetry`
-  - SQL Server with firewall settings set to allow all Azure services and IP addresses from 0.0.0.0 - 255.255.255.255
-  - Azure SQL Database named `Movies`
-  - App Service containing the deployed web app with a SQL connection string added to the Configuration settings
-
-- Resource group 2 ("openhack2")
-
-  - Event Hubs Namespace with an event hub named `telemetry`
-
-> [Download the zip file](https://databricksdemostore.blob.core.windows.net/data/nosql-openhack/DataGenerator.zip) for the data generator used in the OpenHack.
+   * Open a new terminal.
+   * Navigate to the `osx-x64` directory.
+   * Run `./DataGenerator`.
