@@ -69,6 +69,18 @@
     "secondResourceGroup": {
       "type": "string"
     },
+    "suffix": {
+      "type": "string",
+      "metadata": {
+        "description": "Unique suffix to append to all resource names in the first resource group."
+      }
+    },
+    "suffix2": {
+      "type": "string",
+      "metadata": {
+        "description": "Unique suffix to append to all resource names in the second resource group."
+      }
+    },
     "eventhubSku": {
       "type": "string",
       "allowedValues": [
@@ -110,8 +122,8 @@
     }
   },
   "variables": {
-    "name-suffix": "[uniqueString(resourceGroup().id)]",
-    "name2-suffix": "[uniqueString(parameters('secondResourceGroup'))]",
+    "name-suffix": "[parameters('suffix')]",
+    "name2-suffix": "[parameters('suffix2')]",
     "hostingPlanName": "[concat('openhackplan-', variables('name-suffix'))]",
     "webSiteName": "[concat('openhackweb-', variables('name-suffix'))]",
     "sqlserverName": "[parameters('sqlserverName')]",

@@ -12,6 +12,7 @@ $sqlAdministratorLogin = "openhackadmin"
 $sqlAdministratorLoginPassword = "Password123"
 
 $suffix = -join ((48..57) + (97..122) | Get-Random -Count 13 | % {[char]$_})
+$suffix2 = -join ((48..57) + (97..122) | Get-Random -Count 13 | % {[char]$_})
 $databaseName = "Movies"
 $sqlserverName = "openhacksql-$suffix"
 
@@ -27,7 +28,9 @@ $outputs = New-AzResourceGroupDeployment `
     -secondLocation $location2 `
     -sqlserverName $sqlserverName `
     -sqlAdministratorLogin $sqlAdministratorLogin `
-    -sqlAdministratorLoginPassword $(ConvertTo-SecureString -String $sqlAdministratorLoginPassword -AsPlainText -Force)
+    -sqlAdministratorLoginPassword $(ConvertTo-SecureString -String $sqlAdministratorLoginPassword -AsPlainText -Force) `
+    -suffix $suffix `
+    -suffix2 $suffix2
 
 #$sqlSvrFqdn = $outputs.Outputs["sqlSvrFqdn"].value
 #$sqlserverName = $outputs.Outputs["sqlserverName"].value
