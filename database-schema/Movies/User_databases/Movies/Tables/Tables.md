@@ -15,7 +15,7 @@
 | [dbo.Category](Category.md) | _Movie categories._ |
 | [dbo.Event](Event.md) | _Experimental: User clickstream events, such as browsing and adding items to a cart._ |
 | [dbo.Item](Item.md) | _Movie items. NOTE: Ignore the aggregate columns here ;)_ |
-| [dbo.ItemAggregate](ItemAggregate.md) | _Experimental: Aggregates, such as buy count, view details count, add item to cart count, and vote count. Ignore the other fields._ |
+| [dbo.ItemAggregate](ItemAggregate.md) | _Experimental: Aggregates, such as buy count, view details count, add item to cart count, and vote count. Ignore the other fields. **Note**: `ItemId` maps to `ImdbId` in the Item table._ |
 | [dbo.ItemCategory](ItemCategory.md) | _Mapping between items and categories. There should be a relationship between this table and the Category table..._ |
 | [dbo.OrderDetails](OrderDetails.md) | _All details related to placed orders._ |
 | [dbo.Orders](Orders.md) | _Placed orders._ |

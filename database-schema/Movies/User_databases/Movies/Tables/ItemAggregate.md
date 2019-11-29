@@ -10,6 +10,8 @@
 
 Experimental: Aggregates, such as buy count, view details count, add item to cart count, and vote count. Ignore the other fields.
 
+**Note**: `ItemId` maps to `ImdbId` in the Item table.
+
 ## <a name="#columns"></a>Columns
 
 | Key | Name | Data Type | Max Length (Bytes) | Nullability |
@@ -63,7 +65,7 @@ CREATE TABLE [dbo].[ItemAggregate]
 GO
 ALTER TABLE [dbo].[ItemAggregate] ADD CONSTRAINT [PK_ItemAggregate] PRIMARY KEY CLUSTERED  ([id])
 GO
-EXEC sp_addextendedproperty N'MS_Description', N'Experimental: Aggregates, such as buy count, view details count, add item to cart count, and vote count. Ignore the other fields.', 'SCHEMA', N'dbo', 'TABLE', N'ItemAggregate', NULL, NULL
+EXEC sp_addextendedproperty N'MS_Description', N'Experimental: Aggregates, such as buy count, view details count, add item to cart count, and vote count. Ignore the other fields. Note: ItemId maps to ImdbId in the Item table.', 'SCHEMA', N'dbo', 'TABLE', N'ItemAggregate', NULL, NULL
 GO
 
 ```
