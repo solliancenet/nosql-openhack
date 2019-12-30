@@ -12,10 +12,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Apps.Movies.Data", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoso.Apps.Common", "Contoso.Apps.Common\Contoso.Apps.Common.csproj", "{3FF97305-2331-4E46-8D0F-C3E3BBD372F2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{5F0E01C6-6BD5-4A34-9449-D14B52FA7845}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGenerator", "..\DataGenerator\DataGenerator.csproj", "{A28FA543-8B8A-42C2-8E78-5B5BB1D5C5A0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,10 +30,6 @@ Global
 		{3FF97305-2331-4E46-8D0F-C3E3BBD372F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FF97305-2331-4E46-8D0F-C3E3BBD372F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FF97305-2331-4E46-8D0F-C3E3BBD372F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A28FA543-8B8A-42C2-8E78-5B5BB1D5C5A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A28FA543-8B8A-42C2-8E78-5B5BB1D5C5A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A28FA543-8B8A-42C2-8E78-5B5BB1D5C5A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A28FA543-8B8A-42C2-8E78-5B5BB1D5C5A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,7 +38,6 @@ Global
 		{1B1BCCD2-5BF1-4281-8BE2-5097E53F3642} = {C4851AE4-C255-4EBF-B976-F50B39EC7C8C}
 		{B74E00B2-7568-4990-81F8-B54AA6751600} = {64037FD7-2047-4CD1-8A7D-E75C894FF675}
 		{3FF97305-2331-4E46-8D0F-C3E3BBD372F2} = {64037FD7-2047-4CD1-8A7D-E75C894FF675}
-		{A28FA543-8B8A-42C2-8E78-5B5BB1D5C5A0} = {5F0E01C6-6BD5-4A34-9449-D14B52FA7845}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F2CB5410-48D3-4E9F-A937-D36BDC5DBF43}
