@@ -23,7 +23,7 @@ Contoso Video uploaded a recent test build of their online video store and relat
 
 ### Data generator
 
-We have provided a data generator that simulates user clickstream data and pumps it into Azure Event Hubs. You will use this generator in some of the challenges, but it is a good idea to configure it beforehand. The data generator is deployed as a .NET Core 3.0 self-contained deployment (SCD) package. This means that the .NET Core runtime is included within each platform folder, so you do not need to download the .NET Core 3.0 SDK as a pre-requisite.
+We have provided a data generator that orders on the website and pumps it into Azure Event Hubs. You will use this generator in some of the challenges, but it is a good idea to configure it beforehand. The data generator is deployed as a .NET Core 3.0 self-contained deployment (SCD) package. This means that the .NET Core runtime is included within each platform folder, so you do not need to download the .NET Core 3.0 SDK as a pre-requisite.
 
 1. [Download the zip file](https://databricksdemostore.blob.core.windows.net/data/nosql-openhack/DataGenerator.zip) and extract it to your desktop.
 
@@ -31,7 +31,7 @@ We have provided a data generator that simulates user clickstream data and pumps
 
 3. Within the appropriate subfolder, open the **appsettings.json** file and update it with the following:
 
-   * **EVENT_HUB_1_CONNECTION_STRING**: Open the Event Hubs namespace in the location 1 resource group (default name is `openhack1`), open the `telemetry` event hub, create a new shared access policy with a Send policy, and paste its connection string here.
+   * **EVENT_HUB_1_CONNECTION_STRING**: Open the Event Hubs namespace in the location 1 resource group (default name is `openhack1`), open the `telemetry` event hub, create a new shared access policy with both Send and Listen policies, and paste its connection string here.
    * **EVENT_HUB_2_CONNECTION_STRING**: Keep empty for now. This will need to be populated in a later challenge.
    * **SQL_CONNECTION_STRING**: The easiest way to retrieve this is to open the web app deployed to the location 1 resource group (`openhack1`), open **Configuration**, then copy the `SqlConnection` connection string value.
 
