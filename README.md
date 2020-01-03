@@ -12,7 +12,7 @@ Feel free to use the below artifacts for your reference.
 
 Contoso Video has provided a database document for their current (test) Movies database. Each table contains a brief description and detailed schema information.
 
-* [SQL database documentation](database-schema/index.md)
+* [SQL database documentation](database-schema/README.md)
 * [Database diagram](database-schema/database-diagram.png)
 
 ### Web application
