@@ -19,10 +19,10 @@
                         <div class="figure @product.CategoryId">
                             <div class="item clearfix">
                                 <a class="item-img" href="@Url.Action("Details", "Store", new { id = product.ItemId })" onclick="add_impression('@this.User.Identity.Name', 'details', @product.ItemId, '@this.Session.SessionID','token')">
-                                    <img src="@Url.Content("http://image.tmdb.org/t/p/w500/")@product.ImagePath" alt="@product.ProductName" class="center-block">
+                                    <img src="@Url.Content("https://github.com/solliancenet/nosql-openhack/raw/master/media/")@product.ImagePath" alt="@product.ProductName" class="center-block">
                                 </a>
                                 <div class="item-content">
-                                    <h4 class="headline-lato">@product.ProductName</h4>
+                                    <h4 class="headline-lato"><strong>@product.ProductName</strong></h4>
                                     <div class="item-footer clearfix">
                                         <div class="footer-content">
                                             <div class="wrap clearfix">

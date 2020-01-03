@@ -15,15 +15,7 @@ namespace Contoso.Apps.Movies.Controllers
             
             var vm = new HomeModel();
 
-            Contoso.Apps.Movies.Data.Models.User user = (Contoso.Apps.Movies.Data.Models.User)Session["User"];
-
-            vm.RecommendProductsTop = RecommendationHelper.GetViaFunction("top", 0, 10);
-
-            if (user != null)
-            {
-                vm.RecommendProductsBought = RecommendationHelper.GetViaFunction("assoc", user.UserId, 10);
-                vm.RecommendProductsLiked = RecommendationHelper.GetViaFunction("collab", user.UserId, 10);
-            }
+            vm.RecommendProductsTop = RecommendationHelper.GetViaFunction("top", 0, 50);
 
             return View(vm);
         }

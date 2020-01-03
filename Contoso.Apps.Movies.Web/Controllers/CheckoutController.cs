@@ -36,6 +36,13 @@ namespace Contoso.Apps.Movies.Web.Controllers
                 vm.ItemsTotal = usersShoppingCart.GetCount();
             }
 
+            var user = (User)Session["User"];
+            var email = "bobloblaw@contosomovies.com";
+            if (user != null && !string.IsNullOrWhiteSpace(user.Email))
+            {
+                email = user.Email;
+            }
+
             // To make filling out the form faster for demo purposes, pre-fill the values:
             vm.Order = new OrderModel
             {
@@ -49,11 +56,11 @@ namespace Contoso.Apps.Movies.Web.Controllers
                 State = "VA",
                 PostalCode = "23456",
                 Country = "United States",
-                Email = "bobloblaw@contosomovies.com",
+                Email = email,
                 NameOnCard = "Bob Loblaw",
                 CreditCardType = "Visa",
                 CreditCardNumber = "4111111111111111",
-                ExpirationDate = "12/20",
+                ExpirationDate = "12/25",
                 CCV = "987",
                 SMSOptIn = true
             };
@@ -78,7 +85,7 @@ namespace Contoso.Apps.Movies.Web.Controllers
                     // Call the gateway payment authorization API:
                     bool ret = true;// gatewayCaller.DoCheckoutAuth(data.Order, ref token, ref decoder);
 
-                    // If authorizaton is successful:
+                    // If authorization is successful:
                     if (ret)
                     {
                         // Hydrate a new Order model from our OrderModel.

@@ -16,10 +16,10 @@
                     <div class="store-details-wrap clearfix">
                         <div class="fig-shop clearfix">
                             <aside class="fig-shop-img">
-                                <img src="@Url.Content("http://image.tmdb.org/t/p/w500/")@Model.Product.ImagePath" alt="@Model.Product.ProductName">
+                                <img src="@Url.Content("https://github.com/solliancenet/nosql-openhack/raw/master/media/")@Model.Product.ImagePath" alt="@Model.Product.ProductName">
                             </aside>
                             <aside class="fig-shop-content">
-                                <h4 class="headline-lato">@Model.Product.ProductName</h4>
+                                <h4 class="headline-lato"><strong>@Model.Product.ProductName</strong></h4>
                                 <h5>@String.Format("{0:c}", Model.Product.UnitPrice)</h5>
                                 <p class="paragraph_opensans">@Model.Product.Description</p>
                                 <div class="avilable-wrap clearfix">
@@ -51,15 +51,6 @@
                             </div>
                         </div>
                         <div class="shop-related clearfix">
-                            @if (this.Session["User"] == null)
-                            {
-                                <h6>Similar Items You Might Also Like</h6>
-
-                                foreach (var product in Model.SimilarProducts)
-                                {
-                                    @Html.Partial("_MoviesTeaser", product)
-                                }
-                            }
 
                             <h6>Frequently Bought Together</h6>
 
@@ -89,7 +80,7 @@
                             {
                                 <div class="item-wrap clearfix">
                                     <div class="item-fig">
-                                        <img src="@Url.Content("http://image.tmdb.org/t/p/w500/")@product.ImagePath" alt="@product.ProductName">
+                                        <img src="@Url.Content("https://github.com/solliancenet/nosql-openhack/raw/master/media/")@product.ImagePath" alt="@product.ProductName">
                                     </div>
                                     <div class="item-content">
                                         <h6><a href="@Url.Action("Details", "Store", new { id = product.ItemId })" onclick="add_impression('@this.User.Identity.Name', 'details', @product.ItemId, '@this.Session.SessionID','token')" >@product.ProductName</a></h6>

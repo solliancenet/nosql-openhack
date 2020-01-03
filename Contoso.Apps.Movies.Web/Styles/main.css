@@ -7688,7 +7688,7 @@ header .onepage-content .header-top-right p {
       opacity: 1 !important; }
   header.s-header {
 	position: relative;
-	background: url(../images/background/header_background2.jpg) fixed;
+	background: url(../images/background/footer-bg2.jpg) fixed;
 	background-position: 30% 855px;
     max-height: 200px;
 } }
@@ -7696,11 +7696,12 @@ header .onepage-content .header-top-right p {
 @media screen and (max-width: 992px) {
   .slider {
     display: none; }
-  header {
-    position: relative;
-    background: url(../images/background/header_background.jpg) fixed;
-    background-position: 21% 650px;
-    background-size: cover; } }
+    header {
+        position: relative;
+        background: url(../images/background/footer-bg2.jpg) fixed;
+        background-position: 21% 650px;
+        background-size: cover;
+    } }
 
 @media screen and (max-width: 1200px) {
   header .header-top-right h2 {

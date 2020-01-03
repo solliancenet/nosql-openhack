@@ -8,29 +8,21 @@ namespace Contoso.Apps.Movies.Data.Models
     [Serializable]
     public class Item
     {
-        //[Key]
-        //public string id { get; set; }
-
-        //virtual public string ObjectId { get; set; }
-
         [ScaffoldColumn(false)]
         public int ItemId { get; set; }
 
         public int VoteCount { get; set; }
 
-        [Required, StringLength(100), Display(Name = "Name")]
         public string ProductName { get; set; }
 
         public int? ImdbId { get; set; }
 
-        [Required, StringLength(10000), Display(Name = "Product Description"), DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         public string ImagePath { get; set; }
 
         public string ThumbnailPath { get; set; }
 
-        [Display(Name = "Price")]
         public double? UnitPrice { get; set; }
 
         public int? CategoryId { get; set; }

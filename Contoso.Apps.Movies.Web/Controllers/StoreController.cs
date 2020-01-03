@@ -25,21 +25,9 @@ namespace Contoso.Apps.Movies.Web.Controllers
         {
             User user = (User)Session["User"];
 
-            List<Item> products = new List<Item>();
+            List<Item> products = RecommendationHelper.GetViaFunction("top", 0, 100);
 
-            //only take 10 products...
-            if (user != null)
-            {
-                string name = user.Email;
-                int userId = user.UserId;
-                products = RecommendationHelper.GetViaFunction("assoc", userId, 12);
-            }
-            else
-            {
-                products = RecommendationHelper.GetViaFunction("top", 0, 12);
-            }
-
-            var randomVm = Mapper.Map<List<Models.ProductListModel>>(RecommendationHelper.GetViaFunction("random", 0, 12));
+            var randomVm = Mapper.Map<List<Models.ProductListModel>>(RecommendationHelper.GetViaFunction("random", 0, 10));
             
             var productsVm = Mapper.Map<List<Models.ProductListModel>>(products);
 
@@ -91,10 +79,6 @@ namespace Contoso.Apps.Movies.Web.Controllers
 
             var productVm = Mapper.Map<Models.ProductModel>(product);
 
-            //Get the simliar product to this item...
-            var similarProducts = RecommendationHelper.GetViaFunction("content", 0, id.Value);
-            var similarProductsVm = Mapper.Map<List<Models.ProductListModel>>(similarProducts);
-
             // Find related products, based on the category
             var relatedProducts = items.Where(p => p.CategoryId == product.CategoryId && p.ItemId != product.ItemId).Take(10).ToList();
             var relatedProductsVm = Mapper.Map<List<Models.ProductListModel>>(relatedProducts);
@@ -111,7 +95,7 @@ namespace Contoso.Apps.Movies.Web.Controllers
             {
                 Product = productVm,
                 RelatedProducts = relatedProductsVm,
-                SimilarProducts = similarProductsVm,
+                SimilarProducts = null,
                 NewProducts = newProductsVm,
                 Categories = categoriesVm
             };

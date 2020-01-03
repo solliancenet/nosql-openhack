@@ -31,7 +31,7 @@ namespace Contoso.Apps.Common
         public static IQueryable<Item> GetItemsByIds(List<int?> itemIds)
         {
             return _dbContext.Items
-                    .Where(c => itemIds.Contains(c.ImdbId))
+                    .Where(c => itemIds.Contains(c.ItemId))
                     .Distinct();
         }
 
@@ -162,27 +162,10 @@ namespace Contoso.Apps.Common
         #endregion
 
         #region Others
-        public static IQueryable<ItemRating> GetRatings(int userId, int take)
-        {
-            return _dbContext.ItemRatings.Where(a => a.UserId == userId).Take(take);
-        }
-
         public static IQueryable<ItemAggregate> GetItemAggregates(int take)
         {
             return _dbContext.ItemAggregates.OrderByDescending(c => c.BuyCount).Take(take);
         }
-
-        public static IQueryable<Rule> GetAssociationsByContentIds(List<int?> strKeys1)
-        {
-            return _dbContext.Associations.Where(c => strKeys1.Contains(c.source) && !strKeys1.Contains(c.target))
-                    .OrderByDescending(c => c.confidence);
-        }
-
-        public static IQueryable<SimilarItem> GetSimilarItems(List<int?> strKeys1, double minSim)
-        {
-            return _dbContext.Similarity.Where(c => strKeys1.Contains(c.sourceItemId) && !strKeys1.Contains(c.targetItemId) && c.similarity > minSim);
-        }
-
         #endregion
     }
 }

@@ -16,31 +16,11 @@
                         <div class="store-details-wrap clearfix">
                             <div class="shop-related clearfix">
 
-                                <p class="clearfix"><br /></p>
-
                                 <h2>Top Sellers</h2>
 
+                                <p class="clearfix"><br /></p>
+
                                 @foreach (var product in Model.RecommendProductsTop)
-                                {
-                                    @Html.Partial("_MoviesTeaser", product)
-                                }
-
-                                <p class="clearfix"><br /></p>
-
-                                <h2>Based on what you and others have bought (Assoc)</h2>
-                                
-                                <p class="clearfix"><br /></p>
-
-                                @foreach (var product in Model.RecommendProductsBought)
-                                {
-                                    @Html.Partial("_MoviesTeaser", product)
-                                }
-
-                                <p class="clearfix"><br /></p>
-
-                                <h2>Based on what you and others have liked (Collab)</h2>
-
-                                @foreach (var product in Model.RecommendProductsLiked)
                                 {
                                     @Html.Partial("_MoviesTeaser", product)
                                 }

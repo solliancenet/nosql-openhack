@@ -160,7 +160,7 @@ function getinfo(movie_id, title) {
         function (result) {
             if (result.movie_results != null) {
                 img_tag = document.getElementById('src_' + movie_id)
-                image_url = 'http://image.tmdb.org/t/p/w500/'
+                image_url = 'https://github.com/solliancenet/nosql-openhack/raw/master/media/'
                     + result.movie_results[0].poster_path
                 a = document.createElement("a");
                 a.setAttribute('href', "/movies/movie/" + movie_id);
