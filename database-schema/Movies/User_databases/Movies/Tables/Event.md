@@ -1,28 +1,58 @@
 #### 
 
-[Movies](../index.md) > [Tables](Tables.md) > dbo.Event
+[Project](../../../../index.md) > [Movies SQL Server](../../../index.md) > [User databases](../../index.md) > [Movies](../index.md) > [Tables](Tables.md) > dbo.Event
 
-# ![Tables](../../../Images/Table32.png) [dbo].[Event]
+# ![Tables](../../../../Images/Table32.png) [dbo].[Event]
 
 ---
 
 ## <a name="#description"></a>MS_Description
 
-Experimental: User clickstream events, such as browsing and adding items to a cart.
+User clickstream events, such as browsing and adding items to a cart.
+
+## <a name="#properties"></a>Properties
+
+| Property | Value |
+|---|---|
+| Collation | SQL_Latin1_General_CP1_CI_AS |
+| Row Count (~) | 4081 |
+| Created | 7:14:20 PM Sunday, December 22, 2019 |
+| Last Modified | 4:05:10 AM Friday, January 3, 2020 |
+
+
+---
 
 ## <a name="#columns"></a>Columns
 
 | Key | Name | Data Type | Max Length (Bytes) | Nullability |
 |---|---|---|---|---|
-| [![Cluster Primary Key PK_Event: id](../../../Images/pkcluster.png)](#indexes) | id | varchar(100) | 100 | NOT NULL |
+| [![Cluster Primary Key PK_Event: id](../../../../Images/pkcluster.png)](#indexes) | id | varchar(100) | 100 | NOT NULL |
 |  | event | varchar(100) | 100 | NULL allowed |
-|  | userId | int | 4 | NULL allowed |
+| [![Foreign Keys FK_Event_User: [dbo].[User].userId](../../../../Images/fk.png)](#foreignkeys) | userId | int | 4 | NULL allowed |
 |  | itemId | int | 4 | NULL allowed |
 |  | orderId | int | 4 | NULL allowed |
 |  | contentId | int | 4 | NULL allowed |
 |  | sessionId | varchar(100) | 100 | NULL allowed |
 |  | created | datetime2 | 8 | NULL allowed |
 |  | region | varchar(50) | 50 | NULL allowed |
+
+
+---
+
+## <a name="#indexes"></a>Indexes
+
+| Key | Name | Key Columns | Unique |
+|---|---|---|---|
+| [![Cluster Primary Key PK_Event: id](../../../../Images/pkcluster.png)](#indexes) | PK_Event | id | YES |
+
+
+---
+
+## <a name="#foreignkeys"></a>Foreign Keys
+
+| Name | Columns |
+|---|---|
+| FK_Event_User | userId->[[dbo].[User].[UserId]](User.md) |
 
 
 ---
@@ -45,7 +75,9 @@ CREATE TABLE [dbo].[Event]
 GO
 ALTER TABLE [dbo].[Event] ADD CONSTRAINT [PK_Event] PRIMARY KEY CLUSTERED  ([id])
 GO
-EXEC sp_addextendedproperty N'MS_Description', N'Experimental: User clickstream events, such as browsing and adding items to a cart.', 'SCHEMA', N'dbo', 'TABLE', N'Event', NULL, NULL
+ALTER TABLE [dbo].[Event] ADD CONSTRAINT [FK_Event_User] FOREIGN KEY ([userId]) REFERENCES [dbo].[User] ([UserId])
+GO
+EXEC sp_addextendedproperty N'MS_Description', N'User clickstream events, such as browsing and adding items to a cart.', 'SCHEMA', N'dbo', 'TABLE', N'Event', NULL, NULL
 GO
 
 ```
@@ -53,9 +85,16 @@ GO
 
 ---
 
-###### Author:  Contoso Movies, Ltd.
+## <a name="#uses"></a>Uses
 
-###### Copyright 2019 - All Rights Reserved
+* [[dbo].[User]](User.md)
 
-###### Created: 2019/11/27
+
+---
+
+###### Author:  Contoso Video, Ltd.
+
+###### Copyright 2020 - All Rights Reserved
+
+###### Created: 2020/01/03
 

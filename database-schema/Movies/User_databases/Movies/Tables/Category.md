@@ -1,8 +1,8 @@
 #### 
 
-[Movies](../index.md) > [Tables](Tables.md) > dbo.Category
+[Project](../../../../index.md) > [Movies SQL Server](../../../index.md) > [User databases](../../index.md) > [Movies](../index.md) > [Tables](Tables.md) > dbo.Category
 
-# ![Tables](../../../Images/Table32.png) [dbo].[Category]
+# ![Tables](../../../../Images/Table32.png) [dbo].[Category]
 
 ---
 
@@ -10,14 +10,35 @@
 
 Movie categories.
 
+## <a name="#properties"></a>Properties
+
+| Property | Value |
+|---|---|
+| Collation | SQL_Latin1_General_CP1_CI_AS |
+| Row Count (~) | 19 |
+| Created | 7:14:20 PM Sunday, December 22, 2019 |
+| Last Modified | 5:04:19 PM Friday, January 3, 2020 |
+
+
+---
+
 ## <a name="#columns"></a>Columns
 
 | Key | Name | Data Type | Max Length (Bytes) | Nullability | Identity |
 |---|---|---|---|---|---|
-| [![Cluster Primary Key PK_Category: CategoryId](../../../Images/pkcluster.png)](#indexes) | CategoryId | int | 4 | NOT NULL | 1 - 1 |
+| [![Cluster Primary Key PK_Category: CategoryId](../../../../Images/pkcluster.png)](#indexes) | CategoryId | int | 4 | NOT NULL | 1 - 1 |
 |  | CategoryName | varchar(100) | 100 | NULL allowed |  |
 |  | Description | varchar(200) | 200 | NULL allowed |  |
 |  | Products | varchar(200) | 200 | NULL allowed |  |
+
+
+---
+
+## <a name="#indexes"></a>Indexes
+
+| Key | Name | Key Columns | Unique |
+|---|---|---|---|
+| [![Cluster Primary Key PK_Category: CategoryId](../../../../Images/pkcluster.png)](#indexes) | PK_Category | CategoryId | YES |
 
 
 ---
@@ -43,9 +64,17 @@ GO
 
 ---
 
-###### Author:  Contoso Movies, Ltd.
+## <a name="#usedby"></a>Used By
 
-###### Copyright 2019 - All Rights Reserved
+* [[dbo].[Item]](Item.md)
+* [[dbo].[User]](User.md)
 
-###### Created: 2019/11/27
+
+---
+
+###### Author:  Contoso Video, Ltd.
+
+###### Copyright 2020 - All Rights Reserved
+
+###### Created: 2020/01/03
 

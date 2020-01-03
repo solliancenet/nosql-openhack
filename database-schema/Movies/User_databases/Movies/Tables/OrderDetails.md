@@ -1,8 +1,8 @@
 #### 
 
-[Movies](../index.md) > [Tables](Tables.md) > dbo.OrderDetails
+[Project](../../../../index.md) > [Movies SQL Server](../../../index.md) > [User databases](../../index.md) > [Movies](../index.md) > [Tables](Tables.md) > dbo.OrderDetails
 
-# ![Tables](../../../Images/Table32.png) [dbo].[OrderDetails]
+# ![Tables](../../../../Images/Table32.png) [dbo].[OrderDetails]
 
 ---
 
@@ -10,16 +10,37 @@
 
 All details related to placed orders.
 
+## <a name="#properties"></a>Properties
+
+| Property | Value |
+|---|---|
+| Collation | SQL_Latin1_General_CP1_CI_AS |
+| Row Count (~) | 430 |
+| Created | 5:01:16 PM Friday, January 3, 2020 |
+| Last Modified | 5:04:26 PM Friday, January 3, 2020 |
+
+
+---
+
 ## <a name="#columns"></a>Columns
 
 | Key | Name | Data Type | Max Length (Bytes) | Nullability | Identity |
 |---|---|---|---|---|---|
-| [![Cluster Primary Key PK_OrderDetails_1: OrderDetailId](../../../Images/pkcluster.png)](#indexes) | OrderDetailId | int | 4 | NOT NULL | 1 - 1 |
-| [![Foreign Keys FK_OrderDetails_Orders: [dbo].[Orders].OrderId](../../../Images/fk.png)](#foreignkeys) | OrderId | int | 4 | NOT NULL |  |
+| [![Cluster Primary Key PK_OrderDetails_1: OrderDetailId](../../../../Images/pkcluster.png)](#indexes) | OrderDetailId | int | 4 | NOT NULL | 1 - 1 |
+| [![Foreign Keys FK_OrderDetails_Orders: [dbo].[Orders].OrderId](../../../../Images/fk.png)](#foreignkeys) | OrderId | int | 4 | NOT NULL |  |
 |  | Email | varchar(100) | 100 | NOT NULL |  |
-| [![Foreign Keys FK_OrderDetails_Item: [dbo].[Item].ProductId](../../../Images/fk.png)](#foreignkeys) | ProductId | int | 4 | NULL allowed |  |
+| [![Foreign Keys FK_OrderDetails_Item: [dbo].[Item].ProductId](../../../../Images/fk.png)](#foreignkeys) | ProductId | int | 4 | NULL allowed |  |
 |  | Quantity | int | 4 | NULL allowed |  |
-|  | UnitPrice | float | 8 | NULL allowed |  |
+|  | UnitPrice | decimal(18,2) | 9 | NULL allowed |  |
+
+
+---
+
+## <a name="#indexes"></a>Indexes
+
+| Key | Name | Key Columns | Unique |
+|---|---|---|---|
+| [![Cluster Primary Key PK_OrderDetails_1: OrderDetailId](../../../../Images/pkcluster.png)](#indexes) | PK_OrderDetails_1 | OrderDetailId | YES |
 
 
 ---
@@ -44,7 +65,7 @@ CREATE TABLE [dbo].[OrderDetails]
 [Email] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 [ProductId] [int] NULL,
 [Quantity] [int] NULL,
-[UnitPrice] [float] NULL
+[UnitPrice] [decimal] (18, 2) NULL
 )
 GO
 ALTER TABLE [dbo].[OrderDetails] ADD CONSTRAINT [PK_OrderDetails_1] PRIMARY KEY CLUSTERED  ([OrderDetailId])
@@ -65,9 +86,17 @@ GO
 
 ---
 
-###### Author:  Contoso Movies, Ltd.
+## <a name="#uses"></a>Uses
 
-###### Copyright 2019 - All Rights Reserved
+* [[dbo].[Item]](Item.md)
+* [[dbo].[Orders]](Orders.md)
 
-###### Created: 2019/11/27
+
+---
+
+###### Author:  Contoso Video, Ltd.
+
+###### Copyright 2020 - All Rights Reserved
+
+###### Created: 2020/01/03
 

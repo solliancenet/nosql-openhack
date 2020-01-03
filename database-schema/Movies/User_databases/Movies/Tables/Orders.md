@@ -1,8 +1,8 @@
 #### 
 
-[Movies](../index.md) > [Tables](Tables.md) > dbo.Orders
+[Project](../../../../index.md) > [Movies SQL Server](../../../index.md) > [User databases](../../index.md) > [Movies](../index.md) > [Tables](Tables.md) > dbo.Orders
 
-# ![Tables](../../../Images/Table32.png) [dbo].[Orders]
+# ![Tables](../../../../Images/Table32.png) [dbo].[Orders]
 
 ---
 
@@ -10,12 +10,24 @@
 
 Placed orders.
 
+## <a name="#properties"></a>Properties
+
+| Property | Value |
+|---|---|
+| Collation | SQL_Latin1_General_CP1_CI_AS |
+| Row Count (~) | 101 |
+| Created | 5:00:24 PM Friday, January 3, 2020 |
+| Last Modified | 5:01:17 PM Friday, January 3, 2020 |
+
+
+---
+
 ## <a name="#columns"></a>Columns
 
 | Key | Name | Data Type | Max Length (Bytes) | Nullability | Identity |
 |---|---|---|---|---|---|
-| [![Cluster Primary Key PK_Orders: OrderId](../../../Images/pkcluster.png)](#indexes) | OrderId | int | 4 | NOT NULL | 1 - 1 |
-|  | OrderDate | datetime | 8 | NULL allowed |  |
+| [![Cluster Primary Key PK_Orders: OrderId](../../../../Images/pkcluster.png)](#indexes) | OrderId | int | 4 | NOT NULL | 1 - 1 |
+|  | OrderDate | datetime | 8 | NOT NULL |  |
 |  | FirstName | varchar(160) | 160 | NOT NULL |  |
 |  | LastName | varchar(160) | 160 | NOT NULL |  |
 |  | Address | varchar(70) | 70 | NOT NULL |  |
@@ -28,9 +40,18 @@ Placed orders.
 |  | SMSStatus | varchar(100) | 100 | NULL allowed |  |
 |  | Email | varchar(100) | 100 | NOT NULL |  |
 |  | ReceiptUrl | varchar(100) | 100 | NULL allowed |  |
-|  | Total | decimal(18,0) | 9 | NULL allowed |  |
+|  | Total | decimal(18,2) | 9 | NULL allowed |  |
 |  | PaymentTransactionId | varchar(100) | 100 | NULL allowed |  |
 |  | HasBeenShipped | bit | 1 | NULL allowed |  |
+
+
+---
+
+## <a name="#indexes"></a>Indexes
+
+| Key | Name | Key Columns | Unique |
+|---|---|---|---|
+| [![Cluster Primary Key PK_Orders: OrderId](../../../../Images/pkcluster.png)](#indexes) | PK_Orders | OrderId | YES |
 
 
 ---
@@ -41,7 +62,7 @@ Placed orders.
 CREATE TABLE [dbo].[Orders]
 (
 [OrderId] [int] NOT NULL IDENTITY(1, 1),
-[OrderDate] [datetime] NULL,
+[OrderDate] [datetime] NOT NULL,
 [FirstName] [varchar] (160) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 [LastName] [varchar] (160) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 [Address] [varchar] (70) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
@@ -54,7 +75,7 @@ CREATE TABLE [dbo].[Orders]
 [SMSStatus] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [Email] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 [ReceiptUrl] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[Total] [decimal] (18, 0) NULL,
+[Total] [decimal] (18, 2) NULL,
 [PaymentTransactionId] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
 [HasBeenShipped] [bit] NULL
 )
@@ -69,9 +90,16 @@ GO
 
 ---
 
-###### Author:  Contoso Movies, Ltd.
+## <a name="#usedby"></a>Used By
 
-###### Copyright 2019 - All Rights Reserved
+* [[dbo].[OrderDetails]](OrderDetails.md)
 
-###### Created: 2019/11/27
+
+---
+
+###### Author:  Contoso Video, Ltd.
+
+###### Copyright 2020 - All Rights Reserved
+
+###### Created: 2020/01/03
 

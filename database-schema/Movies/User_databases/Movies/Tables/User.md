@@ -1,8 +1,8 @@
 #### 
 
-[Movies](../index.md) > [Tables](Tables.md) > dbo.User
+[Project](../../../../index.md) > [Movies SQL Server](../../../index.md) > [User databases](../../index.md) > [Movies](../index.md) > [Tables](Tables.md) > dbo.User
 
-# ![Tables](../../../Images/Table32.png) [dbo].[User]
+# ![Tables](../../../../Images/Table32.png) [dbo].[User]
 
 ---
 
@@ -10,15 +10,36 @@
 
 All user accounts.
 
+## <a name="#properties"></a>Properties
+
+| Property | Value |
+|---|---|
+| Collation | SQL_Latin1_General_CP1_CI_AS |
+| Row Count (~) | 6 |
+| Created | 7:14:20 PM Sunday, December 22, 2019 |
+| Last Modified | 7:21:54 AM Friday, January 3, 2020 |
+
+
+---
+
 ## <a name="#columns"></a>Columns
 
 | Key | Name | Data Type | Max Length (Bytes) | Nullability | Identity |
 |---|---|---|---|---|---|
-| [![Cluster Primary Key PK_User: UserId](../../../Images/pkcluster.png)](#indexes) | UserId | int | 4 | NOT NULL | 1 - 1 |
+| [![Cluster Primary Key PK_User: UserId](../../../../Images/pkcluster.png)](#indexes) | UserId | int | 4 | NOT NULL | 1 - 1 |
 |  | Name | varchar(100) | 100 | NULL allowed |  |
 |  | Email | varchar(100) | 100 | NULL allowed |  |
-| [![Foreign Keys FK_User_Category: [dbo].[Category].CategoryId](../../../Images/fk.png)](#foreignkeys) | CategoryId | int | 4 | NULL allowed |  |
+| [![Foreign Keys FK_User_Category: [dbo].[Category].CategoryId](../../../../Images/fk.png)](#foreignkeys) | CategoryId | int | 4 | NULL allowed |  |
 |  | Personality | varchar(100) | 100 | NULL allowed |  |
+
+
+---
+
+## <a name="#indexes"></a>Indexes
+
+| Key | Name | Key Columns | Unique |
+|---|---|---|---|
+| [![Cluster Primary Key PK_User: UserId](../../../../Images/pkcluster.png)](#indexes) | PK_User | UserId | YES |
 
 
 ---
@@ -58,9 +79,23 @@ GO
 
 ---
 
-###### Author:  Contoso Movies, Ltd.
+## <a name="#uses"></a>Uses
 
-###### Copyright 2019 - All Rights Reserved
+* [[dbo].[Category]](Category.md)
 
-###### Created: 2019/11/27
+
+---
+
+## <a name="#usedby"></a>Used By
+
+* [[dbo].[Event]](Event.md)
+
+
+---
+
+###### Author:  Contoso Video, Ltd.
+
+###### Copyright 2020 - All Rights Reserved
+
+###### Created: 2020/01/03
 

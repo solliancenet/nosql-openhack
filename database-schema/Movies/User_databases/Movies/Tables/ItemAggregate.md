@@ -1,39 +1,55 @@
 #### 
 
-[Movies](../index.md) > [Tables](Tables.md) > dbo.ItemAggregate
+[Project](../../../../index.md) > [Movies SQL Server](../../../index.md) > [User databases](../../index.md) > [Movies](../index.md) > [Tables](Tables.md) > dbo.ItemAggregate
 
-# ![Tables](../../../Images/Table32.png) [dbo].[ItemAggregate]
+# ![Tables](../../../../Images/Table32.png) [dbo].[ItemAggregate]
 
 ---
 
 ## <a name="#description"></a>MS_Description
 
-Experimental: Aggregates, such as buy count, view details count, add item to cart count, and vote count. Ignore the other fields.
+Aggregates, such as buy count, view details count, add item to cart count, and vote count. 1:1 relationship with Items. A batch process updates these counts, which is an internal process we cannot share at this time.
 
-**Note**: `ItemId` maps to `ImdbId` in the Item table.
+## <a name="#properties"></a>Properties
+
+| Property | Value |
+|---|---|
+| Collation | SQL_Latin1_General_CP1_CI_AS |
+| Row Count (~) | 500 |
+| Created | 7:14:20 PM Sunday, December 22, 2019 |
+| Last Modified | 5:04:34 PM Friday, January 3, 2020 |
+
+
+---
 
 ## <a name="#columns"></a>Columns
 
 | Key | Name | Data Type | Max Length (Bytes) | Nullability |
 |---|---|---|---|---|
-| [![Cluster Primary Key PK_ItemAggregate: id](../../../Images/pkcluster.png)](#indexes) | id | varchar(100) | 100 | NOT NULL |
-|  | ItemId | int | 4 | NOT NULL |
+| [![Cluster Primary Key PK_ItemAggregate: id](../../../../Images/pkcluster.png)](#indexes) | id | varchar(100) | 100 | NOT NULL |
+| [![Foreign Keys FK_ItemAggregate_Item: [dbo].[Item].ItemId](../../../../Images/fk.png)](#foreignkeys) | ItemId | int | 4 | NOT NULL |
 |  | BuyCount | int | 4 | NULL allowed |
 |  | ViewDetailsCount | int | 4 | NULL allowed |
 |  | AddToCartCount | int | 4 | NULL allowed |
 |  | VoteCount | int | 4 | NULL allowed |
-|  | ProductName | varchar(100) | 100 | NULL allowed |
-|  | ImdbId | varchar(100) | 100 | NULL allowed |
-|  | Description | varchar(200) | 200 | NULL allowed |
-|  | ImagePath | varchar(200) | 200 | NULL allowed |
-|  | ThumbnailPath | varchar(200) | 200 | NULL allowed |
-|  | UnitPrice | float | 8 | NULL allowed |
-|  | CategoryId | int | 4 | NULL allowed |
-|  | Category | varchar(200) | 200 | NULL allowed |
-|  | Popularity | varchar(100) | 100 | NULL allowed |
-|  | OriginalLanguage | varchar(100) | 100 | NULL allowed |
-|  | ReleaseDate | varchar(100) | 100 | NULL allowed |
-|  | VoteAverage | varchar(100) | 100 | NULL allowed |
+
+
+---
+
+## <a name="#indexes"></a>Indexes
+
+| Key | Name | Key Columns | Unique |
+|---|---|---|---|
+| [![Cluster Primary Key PK_ItemAggregate: id](../../../../Images/pkcluster.png)](#indexes) | PK_ItemAggregate | id | YES |
+
+
+---
+
+## <a name="#foreignkeys"></a>Foreign Keys
+
+| Name | Columns |
+|---|---|
+| FK_ItemAggregate_Item | ItemId->[[dbo].[Item].[ItemId]](Item.md) |
 
 
 ---
@@ -48,24 +64,14 @@ CREATE TABLE [dbo].[ItemAggregate]
 [BuyCount] [int] NULL,
 [ViewDetailsCount] [int] NULL,
 [AddToCartCount] [int] NULL,
-[VoteCount] [int] NULL,
-[ProductName] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[ImdbId] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[Description] [varchar] (200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[ImagePath] [varchar] (200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[ThumbnailPath] [varchar] (200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[UnitPrice] [float] NULL,
-[CategoryId] [int] NULL,
-[Category] [varchar] (200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[Popularity] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[OriginalLanguage] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[ReleaseDate] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
-[VoteAverage] [varchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+[VoteCount] [int] NULL
 )
 GO
 ALTER TABLE [dbo].[ItemAggregate] ADD CONSTRAINT [PK_ItemAggregate] PRIMARY KEY CLUSTERED  ([id])
 GO
-EXEC sp_addextendedproperty N'MS_Description', N'Experimental: Aggregates, such as buy count, view details count, add item to cart count, and vote count. Ignore the other fields. Note: ItemId maps to ImdbId in the Item table.', 'SCHEMA', N'dbo', 'TABLE', N'ItemAggregate', NULL, NULL
+ALTER TABLE [dbo].[ItemAggregate] ADD CONSTRAINT [FK_ItemAggregate_Item] FOREIGN KEY ([ItemId]) REFERENCES [dbo].[Item] ([ItemId])
+GO
+EXEC sp_addextendedproperty N'MS_Description', N'Aggregates, such as buy count, view details count, add item to cart count, and vote count. 1:1 relationship with Items. A batch process updates these counts, which is an internal process we cannot share at this time.', 'SCHEMA', N'dbo', 'TABLE', N'ItemAggregate', NULL, NULL
 GO
 
 ```
@@ -73,9 +79,16 @@ GO
 
 ---
 
-###### Author:  Contoso Movies, Ltd.
+## <a name="#uses"></a>Uses
 
-###### Copyright 2019 - All Rights Reserved
+* [[dbo].[Item]](Item.md)
 
-###### Created: 2019/11/27
+
+---
+
+###### Author:  Contoso Video, Ltd.
+
+###### Copyright 2020 - All Rights Reserved
+
+###### Created: 2020/01/03
 
