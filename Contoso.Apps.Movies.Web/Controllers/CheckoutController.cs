@@ -229,9 +229,6 @@ namespace Contoso.Apps.Movies.Web.Controllers
 
                         await SqlDbHelper.SaveOrder(myCurrentOrder);
 
-                        // Queue up a receipt generation request, asynchronously.
-                        await new AzureQueueHelper().QueueReceiptRequest(myCurrentOrder);
-
                         // Report successful event to Application Insights.
                         var eventProperties = new Dictionary<string, string>();
                         eventProperties.Add("CustomerEmail", order.Email);

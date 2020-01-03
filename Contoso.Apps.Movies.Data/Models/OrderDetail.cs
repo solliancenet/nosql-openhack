@@ -19,18 +19,18 @@ namespace Contoso.Apps.Movies.Data.Models
 
         public int Quantity { get; set; }
 
-        public double? UnitPrice { get; set; }
+        public decimal? UnitPrice { get; set; }
 
         /// <summary>
         /// Calculated field (read only) that returns the cost based on quantity * price.
         /// </summary>
         [ReadOnly(true)]
-        public double Cost
+        public decimal Cost
         {
             get
             {
-                double unitPrice = UnitPrice.HasValue ? UnitPrice.Value : 0;
-                return Math.Round(unitPrice * Quantity, 2);
+                decimal unitPrice = UnitPrice ?? 0;
+                return Decimal.Round(unitPrice * Quantity, 2);
             }
         }
 
