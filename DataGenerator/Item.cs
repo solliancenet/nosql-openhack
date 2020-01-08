@@ -23,14 +23,14 @@ namespace Contoso.Apps.Movies.Data.Models
 
         public string ThumbnailPath { get; set; }
 
-        public double? UnitPrice { get; set; }
+        public decimal? UnitPrice { get; set; }
 
         public int? CategoryId { get; set; }
 
-        public double? Popularity { get; set; }
+        public decimal? Popularity { get; set; }
         public string OriginalLanguage { get; set; }
         public DateTime? ReleaseDate { get; set; }
-        public double? VoteAverage { get; set; }
+        public decimal? VoteAverage { get; set; }
     }
 
     // This class is used to compare two objects of type Product to remove 
