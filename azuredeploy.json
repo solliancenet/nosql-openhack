@@ -334,7 +334,8 @@
           "type": "config",
           "name": "connectionstrings",
           "dependsOn": [
-            "[variables('webSiteName')]"
+            "[variables('webSiteName')]",
+            "[resourceId('Microsoft.Web/sites/sourcecontrols', variables('webSiteName'), 'web')]"
           ],
           "properties": {
             "SqlConnection": {
